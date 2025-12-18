@@ -3,11 +3,11 @@ import json
 import os
 
 
-PORT_IDS = ["7743", "0699", "1480", "4652", "1691", "0585", "0569"] 
+VANGUARD_FUND_IDS = ["7743", "0699", "1480", "4652", "1691", "0585", "0569"] 
 
 
-def fetch_and_save():
-    ids_param = ",".join(PORT_IDS)
+def fetch_and_save_vanguard_prices():
+    ids_param = ",".join(VANGUARD_FUND_IDS)
     
     url = (
         f"https://workplace.vanguard.com/investments/valuationPricesServiceProxy"
@@ -29,11 +29,11 @@ def fetch_and_save():
             funds = data['fundPrices']['content']
             
             for fund in funds:
-                p_id = fund['portId']
+                f_id = fund['portId']
                 price = fund['price']
                 
                 # Create the specific filename: e.g., vanguard-7743.txt
-                filename = f"prices/vanguard-{p_id}.txt"
+                filename = f"prices/vanguard-{f_id}.txt"
                 
                 # Write the price into the file
                 with open(filename, 'w') as f:
@@ -50,4 +50,4 @@ def fetch_and_save():
 
 
 if __name__ == "__main__":
-    fetch_and_save()
+    fetch_and_save_vanguard_prices()
