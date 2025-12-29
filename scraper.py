@@ -23,6 +23,7 @@ def fetch_and_save_vanguard_prices():
         response = requests.get(url, headers=headers, timeout=15)
         response.raise_for_status()
         data = response.json()
+        print(f"Fetched data:\n {data}")
         
         # Check if we have valid content
         if 'fundPrices' in data and 'content' in data['fundPrices']:
